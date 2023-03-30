@@ -6,8 +6,46 @@
   height: 100vh;
 }
 
-.inputContainer, .cvContainer {
+/* Input */
+
+.inputContainer, .outputContainer {
   height: 80%;
   width: 37%;
   border: 1px solid black;
+}
+
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.inputSubContainer {
+  padding: 0px 10px 0px 10px;
+}
+
+.inputSubContainer form {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.inputBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+}
+
+textarea {
+  resize: vertical;
+  height: 100px;
+  max-height: 175px;
+}
+
+/* output */
+
+.cvHeader {
+  display: flex;
+  justify-content: space-between;
 }

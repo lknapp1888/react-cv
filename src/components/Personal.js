@@ -7,10 +7,16 @@ class Personal extends React.Component {
 
     render() {
         return (
-        <div className="personalContainer">
+        <div className="inputSubContainer personalContainer">
             <h1>Personal</h1>
             <form>
-                <input placeholder="example"></input>
+                <input placeholder="First Name"></input>
+                <input placeholder="Surname"></input>
+                <input placeholder="title"></input>
+                <input type="email" placeholder="email"></input>
+                <input placeholder="Address (find api?)"></input>
+                <input type="tel" placeholder="Phone number"></input>
+                <textarea placeholder="Personal statement"></textarea>
             </form>
         </div>
         )
