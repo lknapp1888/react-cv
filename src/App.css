@@ -1,0 +1,13 @@
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  height: 100vh;
+}
+
+.inputContainer, .cvContainer {
+  height: 80%;
+  width: 37%;
+  border: 1px solid black;
+}
