@@ -14,7 +14,7 @@ class Experience extends React.Component {
                 <label>Start date: <input type="date"></input></label>
                 <label>End date: <input type="date"></input></label>
                 <textarea placeholder="brief description"></textarea>
-                <button>Add</button>
+                <button>Add (not functional)</button>
             </form>
         </div>
         )

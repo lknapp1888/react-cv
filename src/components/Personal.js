@@ -17,6 +17,7 @@ class Personal extends React.Component {
                 <input placeholder="Address (find api?)"></input>
                 <input type="tel" placeholder="Phone number"></input>
                 <textarea placeholder="Personal statement"></textarea>
+                <button>Save (not functional)</button>
             </form>
         </div>
         )
