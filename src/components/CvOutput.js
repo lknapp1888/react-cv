@@ -1,4 +1,5 @@
 import React from "react";
+import {format, parseISO} from 'date-fns';
 
 class CvOutput extends React.Component {
   constructor(props) {
@@ -50,8 +51,9 @@ class Job extends React.Component {
       <div className="jobOutputContainer">
         <h4>{this.props.jobInfo.title}</h4>
         <p>{this.props.jobInfo.employer}</p>
-        <p>{this.props.jobInfo.startDate} - {this.props.jobInfo.endDate}</p>
+        <p>{format(parseISO(this.props.jobInfo.startDate), 'MMMM yyyy')} - {format(parseISO(this.props.jobInfo.endDate), 'MMMM yyyy')}</p>
         <p>{this.props.jobInfo.description}</p>
+        
       </div>
     );
   }
@@ -66,7 +68,7 @@ class Education extends React.Component {
     return (
       <div className="educationOutputContainer">
         <h4>{this.props.edInfo.institution}</h4>
-        <p>{this.props.edInfo.startDate} - {this.props.edInfo.endDate}</p>
+        <p>{format(parseISO(this.props.edInfo.startDate), 'MMMM yyyy')} - {format(parseISO(this.props.edInfo.endDate), 'MMMM yyyy')}</p>
         <p>{this.props.edInfo.achievements}</p>
       </div>
     );
