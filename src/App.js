@@ -2,7 +2,7 @@ import "./App.css";
 import React from "react";
 import uniqid from 'uniqid';
 import Personal from "./components/Personal";
-import Education from "./components/Education";
+import Education, { EducationEditor } from "./components/Education";
 import Experience, {ExperienceEditor} from "./components/Experience";
 import CvOutput from "./components/CvOutput";
 
@@ -12,7 +12,10 @@ class App extends React.Component {
     this.updatePersonal = this.updatePersonal.bind(this)
     this.addJob = this.addJob.bind(this)
     this.updateJob = this.updateJob.bind(this)
+    this.deleteJob = this.deleteJob.bind(this)
     this.addEducation = this.addEducation.bind(this)
+    this.updateEducation = this.updateEducation.bind(this)
+    this.deleteEducation = this.deleteEducation.bind(this)
     this.state = {
       cv: {
         personal: {
@@ -28,6 +31,13 @@ class App extends React.Component {
         },
         education: [
           {
+            institution: "OLD should be bottom",
+            startDate: "1998-09-01",
+            endDate: "1999-08-31",
+            achievements: "first class honours in Computer Science",
+            id: uniqid()
+          },
+          {
             institution: "Developer University",
             startDate: "2012-09-01",
             endDate: "2015-08-31",
@@ -41,6 +51,14 @@ class App extends React.Component {
             employer: "Developer company",
             startDate: "2016-09-01",
             endDate: "2019-12-31",
+            description: "job description test",
+            id: uniqid(),
+          },
+          {
+            title: 'another job',
+            employer: "Fintech bitcoin tech bank",
+            startDate: "2011-09-01",
+            endDate: "2014-12-31",
             description: "job description test",
             id: uniqid(),
           },
@@ -77,7 +95,6 @@ class App extends React.Component {
     const cvCopy = this.state.cv;
     for (let i = 0; i < cvCopy.employment.length; i++) {
       if (cvCopy.employment[i].id === id) {
-        console.log('idennnnn')
         cvCopy.employment[i] = {
           title,
           employer,
@@ -109,6 +126,42 @@ class App extends React.Component {
      })
   }
 
+  updateEducation = function (id, institution, startDate, endDate, achievements) {
+    const cvCopy = this.state.cv;
+    for (let i = 0; i < cvCopy.education.length; i++) {
+      if (cvCopy.education[i].id === id) {
+        cvCopy.education[i] = {
+          institution,
+          startDate,
+          endDate,
+          achievements,
+          id
+        }
+        break
+      }
+    }
+    this.setState({
+      cv: cvCopy
+    })
+  }
+
+  deleteJob = function (id) {
+    const cvCopy = this.state.cv;
+    const newJobArr = cvCopy.employment.filter(job => {return job.id !== id})
+    cvCopy.employment = newJobArr;
+    this.setState({
+      cv: cvCopy
+    })
+  }
+  deleteEducation = function (id) {
+    const cvCopy = this.state.cv;
+    const newEduArr = cvCopy.education.filter(edu => {return edu.id !== id})
+    cvCopy.education = newEduArr;
+    this.setState({
+      cv: cvCopy
+    })
+  }
+
   render() {
     return (
       <div className="App">
@@ -116,10 +169,15 @@ class App extends React.Component {
           <Personal updateFunc={this.updatePersonal} ></Personal>
           <div className="experienceContainer">
             <Experience addJob={this.addJob}></Experience>
-            <ExperienceEditor updateJob={this.updateJob} job={this.state.cv.employment[0]}></ExperienceEditor>
+            {this.state.cv.employment.map((exp) => (
+            <ExperienceEditor job={exp} updateJob={this.updateJob} deleteJob={this.deleteJob}></ExperienceEditor>
+          ))}
           </div>
           <div className="educationContainer">
             <Education addEducation={this.addEducation}></Education>
+            {this.state.cv.education.map((edu) => (
+            <EducationEditor education={edu} updateEducation={this.updateEducation} deleteEducation={this.deleteEducation}></EducationEditor>
+          ))}
           </div>
           <div className="inputSubContainer inputBtnContainer"></div>
         </div>

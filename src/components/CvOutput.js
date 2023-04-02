@@ -8,6 +8,8 @@ class CvOutput extends React.Component {
 
   render() {
     const cv = this.props.cv;
+    const sortedEmployment = cv.employment.sort((a, b) => parseISO(b.endDate) - parseISO(a.endDate))
+    const sortedEducation = cv.education.sort((a, b) => parseISO(b.endDate) - parseISO(a.endDate))
     return (
       <div className="outputSubContainer">
         <div className="cvHeader">
@@ -23,14 +25,14 @@ class CvOutput extends React.Component {
         <div>{cv.personal.personalStatement}</div>
         <div className="workOutputCont">
           <h2>Work Experience</h2>
-          {cv.employment.map((job) => (
+          {sortedEmployment.map((job) => (
             <Job jobInfo={job}></Job>
           ))}
           
         </div>
         <div className="educationOutputCont">
           <h2>Education</h2>
-          {cv.education.map((education) => (
+          {sortedEducation.map((education) => (
             <Education edInfo={education}></Education>
           ))}
         </div>

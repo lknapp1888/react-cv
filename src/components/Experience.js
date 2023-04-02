@@ -85,6 +85,7 @@ export class ExperienceEditor extends React.Component {
   constructor(props) {
     super(props);
     this.updateJob = this.updateJob.bind(this);
+    this.deleteJob = this.deleteJob.bind(this)
     this.state = {
       title: this.props.job.title,
       employer: this.props.job.employer,
@@ -106,6 +107,11 @@ export class ExperienceEditor extends React.Component {
     );
   };
 
+  deleteJob = function (e) {
+    e.preventDefault()
+    this.props.deleteJob(this.props.job.id)
+  }
+
   render() {
     return (
       <div className="inputSubContainer editExperienceSubContainer">
@@ -116,11 +122,13 @@ export class ExperienceEditor extends React.Component {
           <input
             value={this.state.title}
             onChange={(e) => this.setState({ title: e.target.value })}
+            placeholder='job title'
             required
           ></input>
           <input
             value={this.state.employer}
             onChange={(e) => this.setState({ employer: e.target.value })}
+            placeholder='company/employer'
             required
           ></input>
           <label>
@@ -145,10 +153,12 @@ export class ExperienceEditor extends React.Component {
             placeholder="brief description"
             value={this.state.description}
             onChange={(e) => this.setState({ description: e.target.value })}
+            placeholder='job description'
           ></textarea>
           <button type="submit" id={this.props.job.id}>
             update
           </button>
+          <button onClick={this.deleteJob}>Delete</button>
         </form>
       </div>
     );
