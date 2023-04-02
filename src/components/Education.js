@@ -37,6 +37,7 @@ class Education extends React.Component {
             placeholder="Institution"
             value={this.state.institution}
             onChange={(e) => this.setState({ institution: e.target.value })}
+            maxLength={40}
             required
           ></input>
           <label>
@@ -61,8 +62,9 @@ class Education extends React.Component {
             placeholder="achievements/degree classification"
             value={this.state.achievements}
             onChange={(e) => this.setState({ achievements: e.target.value })}
+            maxLength={60}
           ></input>
-          <button>Add</button>
+          <div className="btnContainer"><button className="addBtn">Add</button></div>
         </form>
       </div>
     );
@@ -109,6 +111,7 @@ export class EducationEditor extends React.Component {
             value={this.state.institution}
             onChange={(e) => this.setState({ institution: e.target.value })}
             placeholder="Institution"
+            maxLength={40}
             required
           ></input>
           <label>
@@ -133,12 +136,15 @@ export class EducationEditor extends React.Component {
             value={this.state.achievements}
             onChange={(e) => this.setState({ achievements: e.target.value })}
             placeholder="achievements/degree classification"
+            maxLength={60}
             required
           ></input>
-          <button type="submit" id={this.props.education.id}>
-            update
-          </button>
-          <button onClick={this.deleteEducation}>Delete</button>
+          <div className="btnContainer">
+              <button type="submit" id={this.props.education.id} className='updateBtn'>
+                update
+              </button>
+              <button onClick={this.deleteEducation} className='deleteBtn'>Delete</button>
+          </div>
         </form>
       </div>
     );

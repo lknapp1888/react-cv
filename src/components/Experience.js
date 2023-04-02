@@ -41,12 +41,14 @@ class Experience extends React.Component {
             placeholder="Job title"
             value={this.state.title}
             onChange={(e) => this.setState({ title: e.target.value })}
+            maxLength={50}
             required
           ></input>
           <input
             placeholder="Employer"
             value={this.state.employer}
             onChange={(e) => this.setState({ employer: e.target.value })}
+            maxLength={40}
             required
           ></input>
           <label>
@@ -71,8 +73,9 @@ class Experience extends React.Component {
             placeholder="brief description"
             value={this.state.description}
             onChange={(e) => this.setState({ description: e.target.value })}
+            maxLength={200}
           ></textarea>
-          <button>Add</button>
+          <div className="btnContainer"><button className="addBtn">Add</button></div>
         </form>
       </div>
     );
@@ -123,12 +126,14 @@ export class ExperienceEditor extends React.Component {
             value={this.state.title}
             onChange={(e) => this.setState({ title: e.target.value })}
             placeholder='job title'
+            maxLength={50}
             required
           ></input>
           <input
             value={this.state.employer}
             onChange={(e) => this.setState({ employer: e.target.value })}
             placeholder='company/employer'
+            maxLength={40}
             required
           ></input>
           <label>
@@ -153,12 +158,15 @@ export class ExperienceEditor extends React.Component {
             placeholder="brief description"
             value={this.state.description}
             onChange={(e) => this.setState({ description: e.target.value })}
+            maxLength={200}
             placeholder='job description'
           ></textarea>
-          <button type="submit" id={this.props.job.id}>
-            update
-          </button>
-          <button onClick={this.deleteJob}>Delete</button>
+          <div className="btnContainer">
+            <button type="submit" id={this.props.job.id} className='updateBtn'>
+              update
+            </button>
+            <button onClick={this.deleteJob} className='deleteBtn'>Delete</button>
+          </div>
         </form>
       </div>
     );

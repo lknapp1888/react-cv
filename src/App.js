@@ -19,21 +19,21 @@ class App extends React.Component {
     this.state = {
       cv: {
         personal: {
-          firstName: "",
-          surname: "Knapp",
+          firstName: "Joe",
+          surname: "Bloggs",
           title: "Mr",
-          email: "lewis@email.co.uk",
+          email: "j.bloggs@email.co.uk",
           location: "London",
-          phone: "07123 435 323",
+          phone: "01234 567 890",
           personalStatement: `Example text for a personal statement. Lorem ipsum dolor sit amet, 
             consectetur adipiscing elit. Pellentesque non maximus risus. Maecenas quis tempus orci. 
             Pellentesque vitae massa lectus. Nam pulvinar aliquet dolor in egestas.`,
         },
         education: [
           {
-            institution: "OLD should be bottom",
+            institution: "OLD University",
             startDate: "1998-09-01",
-            endDate: "1999-08-31",
+            endDate: "2001-08-31",
             achievements: "first class honours in Computer Science",
             id: uniqid()
           },
@@ -51,7 +51,7 @@ class App extends React.Component {
             employer: "Developer company",
             startDate: "2016-09-01",
             endDate: "2019-12-31",
-            description: "job description test",
+            description: "placeholder job description.",
             id: uniqid(),
           },
           {
@@ -59,7 +59,7 @@ class App extends React.Component {
             employer: "Fintech bitcoin tech bank",
             startDate: "2011-09-01",
             endDate: "2014-12-31",
-            description: "job description test",
+            description: "placeholder job description.",
             id: uniqid(),
           },
         ],
@@ -165,24 +165,27 @@ class App extends React.Component {
   render() {
     return (
       <div className="App">
-        <div className="inputContainer">
-          <Personal updateFunc={this.updatePersonal} ></Personal>
-          <div className="experienceContainer">
-            <Experience addJob={this.addJob}></Experience>
-            {this.state.cv.employment.map((exp) => (
-            <ExperienceEditor job={exp} updateJob={this.updateJob} deleteJob={this.deleteJob}></ExperienceEditor>
-          ))}
+        <h1>CV Generator</h1>
+        <div className="cvContainer">
+          <div className="inputContainer">
+            <Personal updateFunc={this.updatePersonal} ></Personal>
+            <div className="experienceContainer">
+              <Experience addJob={this.addJob}></Experience>
+              {this.state.cv.employment.map((exp) => (
+              <ExperienceEditor job={exp} updateJob={this.updateJob} deleteJob={this.deleteJob}></ExperienceEditor>
+            ))}
+            </div>
+            <div className="educationContainer">
+              <Education addEducation={this.addEducation}></Education>
+              {this.state.cv.education.map((edu) => (
+              <EducationEditor education={edu} updateEducation={this.updateEducation} deleteEducation={this.deleteEducation}></EducationEditor>
+            ))}
+            </div>
+            <div className="inputSubContainer inputBtnContainer"></div>
           </div>
-          <div className="educationContainer">
-            <Education addEducation={this.addEducation}></Education>
-            {this.state.cv.education.map((edu) => (
-            <EducationEditor education={edu} updateEducation={this.updateEducation} deleteEducation={this.deleteEducation}></EducationEditor>
-          ))}
+          <div className="outputContainer">
+            <CvOutput cv={this.state.cv}></CvOutput>
           </div>
-          <div className="inputSubContainer inputBtnContainer"></div>
-        </div>
-        <div className="outputContainer">
-          <CvOutput cv={this.state.cv}></CvOutput>
         </div>
       </div>
     );
